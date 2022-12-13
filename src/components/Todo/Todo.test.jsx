@@ -1,5 +1,5 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { screen, render } from '@testing-library/react';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { screen, render, cleanup } from '@testing-library/react';
 
 import matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
@@ -10,13 +10,25 @@ describe("Todo component", () => {
 
     beforeEach(() => {
         render(<Todo todo={{ completed: false }}/>);
-    })
+    });
 
-    it("To be in the document", () => {
+    afterEach(() => {
+        cleanup();
+    });
 
-        const elem = screen.getByRole("bugs");
+    it("Is in the document", () => {
+
+        const elem = screen.getByRole("listitem")
 
         expect(elem).toBeInTheDocument();
 
-    })
+    });
+
+    it("Displays two buttons", () => {
+
+        const buttons = screen.getAllByRole("button");
+
+        expect(buttons.length).toEqual(2);
+
+    });
 })

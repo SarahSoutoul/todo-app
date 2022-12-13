@@ -17,11 +17,11 @@ function Todo({todo, todos, setTodos}) {
     }
 
     return (
-        <div className="todo">
-            <li className={`todo-item ${todo.completed ? 'completed' : ''}`}>{todo.text}</li>
+        <li className="todo">
+            <span className={`todo-item ${todo.completed ? 'completed' : ''}`}>{todo.text}</span>
             <button className="complete-btn" onClick={completeHandler}>Complete</button>
             <button className="trash-btn" onClick={deleteHandler}>Delete</button>
-        </div>
+        </li>
     )
 }
 

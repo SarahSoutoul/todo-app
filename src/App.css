@@ -69,8 +69,9 @@ form button:hover {
   padding: 1rem;
 }
 
-.todo li {
+.todo-item {
   flex: 1;
+  padding: 0rem 0.5rem;
 }
 
 .trash-btn,
@@ -85,10 +86,6 @@ form button:hover {
 
 .complete-btn {
   background: rgb(11, 212, 162);
-}
-
-.todo-item {
-  padding: 0rem 0.5rem;
 }
 
 .fa-trash,
