@@ -1,6 +1,9 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { screen, render } from '@testing-library/react';
 
+import matchers from '@testing-library/jest-dom/matchers';
+expect.extend(matchers);
+
 import Todo from '.';
 
 describe("Todo component", () => {
@@ -9,9 +12,11 @@ describe("Todo component", () => {
         render(<Todo todo={{ completed: false }}/>);
     })
 
-    it("Runs tests", () => {
+    it("To be in the document", () => {
 
-        expect(2 + 2).toEqual(4);
+        const elem = screen.getByRole("bugs");
+
+        expect(elem).toBeInTheDocument();
 
     })
 })
