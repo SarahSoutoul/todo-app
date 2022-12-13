@@ -52,4 +52,14 @@ describe("Todo component", () => {
         expect(fakeComplete).toHaveBeenCalledOnce();
 
     })
+
+    it("Calls the completeTodo function on click with the correct arguments", async () => {
+
+        const compButton = screen.getByRole("button", { name: "Complete" });
+
+        await userEvent.click(compButton);
+
+        expect(fakeComplete).toHaveBeenCalledWith({ completed: false, text: "TEST" });
+
+    })
 })
