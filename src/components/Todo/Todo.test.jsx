@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { screen, render, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -7,10 +7,13 @@ expect.extend(matchers);
 
 import Todo from '.';
 
+let fakeComplete;
+
 describe("Todo component", () => {
 
     beforeEach(() => {
-        render(<Todo todo={{ completed: false }}/>);
+        fakeComplete = vi.fn();
+        render(<Todo todo={{ completed: false, text: "TEST" }} completeTodo={fakeComplete}/>);
     });
 
     afterEach(() => {
@@ -25,6 +28,13 @@ describe("Todo component", () => {
 
     });
 
+    it("Displays the provided text", () => {
+
+        const todoTextElement = screen.getByRole("listitem").firstChild;
+
+        expect(todoTextElement.textContent).toBe("TEST");
+    })
+
     it("Displays two buttons", () => {
 
         const buttons = screen.getAllByRole("button");
@@ -33,16 +43,13 @@ describe("Todo component", () => {
 
     });
 
-    it("Adds the completed class on click", async () => {
+    it("Calls the completeTodo function on click", async () => {
 
         const compButton = screen.getByRole("button", { name: "Complete" });
-        const toDoItem = screen.getByRole("listitem").firstChild;
-
-        expect(toDoItem).not.toHaveClass("complete");
 
         await userEvent.click(compButton);
 
-        expect(toDoItem).toHaveClass("complete");
+        expect(fakeComplete).toHaveBeenCalledOnce();
 
     })
 })

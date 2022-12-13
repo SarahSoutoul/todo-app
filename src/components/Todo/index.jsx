@@ -1,19 +1,11 @@
-function Todo({todo, todos, setTodos}) {
+function Todo({todo, completeTodo, deleteTodo }) {
+    
     function deleteHandler() {
-        let filteredTodos = todos.filter(el => el !== todo)
-        setTodos(filteredTodos)
+        deleteTodo(todo);
     }
 
     function completeHandler() {
-        setTodos(todos.map((item) => {
-            if(item === todo) {
-                return {
-                    ...item,
-                    completed: !item.completed
-                }
-            }
-            return item;
-        }))
+        completeTodo(todo);
     }
 
     return (
