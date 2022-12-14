@@ -16,7 +16,7 @@ header {
 }
 
 header,
-form {
+form, .fact-box {
   min-height: 20vh;
   display: flex;
   justify-content: center;
@@ -139,4 +139,8 @@ select {
   background: #ff6f47;
   cursor: pointer;
   pointer-events: none;
+}
+
+.fact-box {
+  padding: 1rem;
 }

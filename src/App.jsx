@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import './App.css';
-import {Form, TodoList} from './components';
+import {Form, TodoList, FactBox} from './components';
 
 function App() {
     const [inputText, setInputText] = useState('');
@@ -11,6 +11,7 @@ function App() {
           <header>Sarah's Todo List</header>
           <Form setInputText={setInputText} setTodos={setTodos} todos={todos} inputText={inputText}/>
           <TodoList todos={todos} setTodos={setTodos}/>
+          <FactBox todoCount={todos.length}/>
         </div>
     );
 }
